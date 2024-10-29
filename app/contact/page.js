@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import ContactComponent from '../components/ContactComponent'; // Fixed spelling of 'ContactComponent'
 
 const Contact = () => {
-  const [iframeWidth, setIframeWidth] = useState(window.innerWidth); // Initialize with current width
+  const [iframeWidth, setIframeWidth] = useState(""); // Initialize with current width
 
   useEffect(() => {
     setIframeWidth(window.innerWidth);
@@ -23,5 +23,4 @@ const Contact = () => {
     </div>
   );
 };
-
 export default Contact;
