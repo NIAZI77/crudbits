@@ -6,15 +6,7 @@ const Contact = () => {
   const [iframeWidth, setIframeWidth] = useState(window.innerWidth); // Initialize with current width
 
   useEffect(() => {
-    const handleResize = () => {
-      setIframeWidth(window.innerWidth);
-    };
-
-    // Set initial width
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize); // Cleanup listener on unmount
-    };
+    setIframeWidth(window.innerWidth);
   }, []);
 
   return (
