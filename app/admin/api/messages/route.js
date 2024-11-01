@@ -9,11 +9,11 @@ export async function GET(req) {
         await client.connect();
         const db = client.db(dbName);
         const collection = db.collection('messages');
-        
+
         // Fetching all data
         const data = await collection.find({}).toArray();
-       
-        return new Response(JSON.stringify( data ), {
+
+        return new Response(JSON.stringify(data), {
             status: 200,
             headers: { 'Content-Type': 'application/json' }
         });

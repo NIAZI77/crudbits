@@ -9,7 +9,7 @@ export async function GET(req) {
         await client.connect();
         const db = client.db(dbName);
         const collection = db.collection('products');
-        
+
         // Fetching all data
         const data = await collection.find({}).toArray();
         const fdata = data.map((item) => { // Use `data` instead of `response`
@@ -18,7 +18,7 @@ export async function GET(req) {
                 slug: item.title.toLowerCase().split(" ").join("-"),
             };
         });
-        return new Response(JSON.stringify( fdata ), {
+        return new Response(JSON.stringify(fdata), {
             status: 200,
             headers: { 'Content-Type': 'application/json' }
         });

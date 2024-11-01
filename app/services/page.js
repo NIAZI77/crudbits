@@ -4,7 +4,7 @@ import ServiceComponent from '../components/ServiceComponent';
 const Page = () => {
     return (
         <div>
-            <div 
+            <div
                 className="hero max-h-96 h-screen w-full relative overflow-hidden bg-cover bg-no-repeat bg-center"
                 style={{ backgroundImage: `url('/Data-Migration-Services.jpg')` }}
             >

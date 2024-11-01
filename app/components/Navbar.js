@@ -33,7 +33,7 @@ const Navbar = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch('/api/products');
+                const response = await fetch('/api/products', { cache: 'no-store' });
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -47,7 +47,7 @@ const Navbar = () => {
         };
         const fetchFhirProducts = async () => {
             try {
-                const response = await fetch('/api/products');
+                const response = await fetch('/api/products', { cache: 'no-store' });
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -62,7 +62,7 @@ const Navbar = () => {
 
         const fetchServices = async () => {
             try {
-                const response = await fetch('/api/services');
+                const response = await fetch('/api/services', { cache: 'no-store' });
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }

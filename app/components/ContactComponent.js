@@ -25,6 +25,7 @@ const ContactComponent = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
+        cache: 'no-store'
       });
 
       if (response.ok) {

@@ -11,7 +11,7 @@ const Page = () => {
             setLoading(true);
             setError(null); // Reset error state before fetching
             try {
-                const response = await fetch('/admin/api/messages');
+                const response = await fetch('/admin/api/messages', { cache: 'no-store' });
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }

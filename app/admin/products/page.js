@@ -14,7 +14,7 @@ const Page = () => {
     const fetchProducts = async () => {
       setLoading(true);
       try {
-        const response = await fetch('/api/products');
+        const response = await fetch('/api/products', { cache: 'no-store' });
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -30,6 +30,34 @@ const Page = () => {
     fetchProducts();
   }, []);
 
+  // Delete product function
+  const deleteProduct = async (productId) => {
+    setLoading(true);
+    try {
+      const response = await fetch(`/admin/api/deleteProduct`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ _id: productId }),
+        cache: 'no-store'
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      // Update the products state to remove the deleted product
+      setProducts(products.filter((product) => product._id !== productId));
+    } catch (err) {
+      console.error('Error deleting product:', err);
+    } finally {
+      setLoading(false);
+      setConfirmDelete(false);
+      setSelectedProduct(null);
+    }
+  };
+
   // Handle delete confirmation
   const handleDelete = (product) => {
     setSelectedProduct(product);
@@ -38,9 +66,7 @@ const Page = () => {
 
   const handleConfirmDelete = () => {
     if (selectedProduct) {
-      setProducts(products.filter((product) => product._id !== selectedProduct._id));
-      setConfirmDelete(false);
-      setSelectedProduct(null);
+      deleteProduct(selectedProduct._id);
     }
   };
 

@@ -2,12 +2,11 @@
 import React, { useState } from 'react';
 import { CldUploadWidget } from "next-cloudinary";
 
-const AddProductPage = () => {
+const AddservicePage = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [para, setPara] = useState([{ title: '', description: '' }]);
   const [thumbnail, setThumbnail] = useState("");
-  const [fhir, setFhir] = useState(false);
 
   const handleAddPara = () => {
     const lastPara = para[para.length - 1];
@@ -25,30 +24,24 @@ const AddProductPage = () => {
   };
 
   const handleUploadSuccess = (result) => {
-    setThumbnail(result.info.secure_url); // Fix variable name
-  };
-  const handleProductChange = (event) => {
-    // Convert the selected value to a boolean
-    const value = event.target.value === 'true';
-    setFhir(value);
+    setThumbnail(result.info.secure_url);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newProduct = {
+    const newService = {
       title,
       description,
       para,
       thumbnail,
-      fhir
     };
     try {
-      const response = await fetch('/admin/api/addProduct', {
+      const response = await fetch('/admin/api/addService', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(newProduct),
+        body: JSON.stringify(newService),
         cache: 'no-store'
       });
 
@@ -57,11 +50,11 @@ const AddProductPage = () => {
       }
 
       await response.json();
-      alert('Product added successfully!');
+      alert('Service added successfully!');
       resetForm();
     } catch (error) {
-      console.error('Error adding product:', error);
-      alert('Failed to add product. Please try again.');
+      console.error('Error adding service:', error);
+      alert('Failed to add service. Please try again.');
     }
   };
 
@@ -69,12 +62,12 @@ const AddProductPage = () => {
     setTitle('');
     setDescription('');
     setPara([{ title: '', description: '' }]);
-    setThumbnail(""); // Fix variable name
+    setThumbnail('');
   };
 
   return (
     <div className="max-w-3xl mx-auto p-4">
-      <h1 className="text-3xl font-bold text-center">Add Product</h1>
+      <h1 className="text-3xl font-bold text-center">Add Service</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="title">Title</label>
@@ -97,13 +90,7 @@ const AddProductPage = () => {
             onChange={(e) => setDescription(e.target.value)}
           />
         </div>
-        <div className="flex items-center justify-between">
-          <label htmlFor="boolean-select" className="inline-flex text-gray-700 text-sm font-bold mb-2">Select an Product</label>
-          <select id="boolean-select" onChange={handleProductChange}>
-            <option value="false">Product</option>
-            <option value="true">FHIRSuit</option>
-          </select>
-        </div>
+
         {thumbnail && (
           <div className="mt-4">
             <p className="font-bold block text-sm text-slate-600">Uploaded Image:</p>
@@ -111,7 +98,7 @@ const AddProductPage = () => {
               <div className="w-1/4 p-2">
                 <img
                   src={thumbnail}
-                  alt="Uploaded Product"
+                  alt="Uploaded service"
                   className="max-w-full h-auto"
                 />
               </div>
@@ -127,7 +114,7 @@ const AddProductPage = () => {
             >
               {({ open }) => (
                 <button type="button" className="w-full" onClick={open}>
-                  {thumbnail.length !== 0 ? "Change Product Image" : "Upload Product Image"}
+                  {thumbnail.length !== 0 ? "Change Service Image" : "Upload Service Image"}
                 </button>
               )}
             </CldUploadWidget>
@@ -182,4 +169,4 @@ const AddProductPage = () => {
   );
 };
 
-export default AddProductPage;
+export default AddservicePage;

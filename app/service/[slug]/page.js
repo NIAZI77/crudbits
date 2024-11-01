@@ -19,7 +19,7 @@ const Page = ({ params }) => {
     const fetchServices = async () => {
       setLoading(true);
       try {
-        const response = await fetch('/api/services');
+        const response = await fetch('/api/services', { cache: 'no-store' });
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -76,7 +76,7 @@ const Page = ({ params }) => {
             <div
               className="md:w-[40vw] md:min-h-[20vw] min-h-72 w-full bg-cover bg-center mx-auto"
               style={{
-                backgroundImage: `url(${ service.thumbnail})`,
+                backgroundImage: `url(${service.thumbnail})`,
                 backgroundColor: 'rgba(0, 0, 0, 0.5)',
               }}
             />

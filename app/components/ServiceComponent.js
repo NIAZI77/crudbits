@@ -1,4 +1,4 @@
-"use client"; 
+"use client";
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
@@ -16,7 +16,7 @@ const ServiceComponent = () => {
         const fetchServices = async () => {
             setLoading(true);
             try {
-                const response = await fetch('/api/services');
+                const response = await fetch('/api/services', { cache: 'no-store' });
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -60,8 +60,8 @@ const ServiceComponent = () => {
                                 <span className="text-5xl font-bold text-red-500">{index < 9 ? '0' : ''}{index + 1}</span>
                                 <h2 className="text-xl font-bold text-slate-600">{item.title}</h2>
                                 <p className="text-md">{item.description}</p>
-                                <Link 
-                                    title="crudbits" 
+                                <Link
+                                    title="crudbits"
                                     href={`/service/${item.slug}`}
                                     className="bg-slate-500 px-8 w-fit py-2 text-white font-bold hover:bg-transparent border-2 border-slate-500 hover:text-slate-500 transition-all block my-10"
                                 >
