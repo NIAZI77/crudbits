@@ -2,13 +2,18 @@
 import React, { useState } from 'react';
 import { CldUploadWidget } from "next-cloudinary";
 import Image from 'next/image';
-
+import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
 const AddservicePage = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [para, setPara] = useState([{ title: '', description: '' }]);
   const [thumbnail, setThumbnail] = useState("");
-
+  const router = useRouter()
+  const isAdminLoggedIn = Cookies.get('isAdminLoggedIn');
+  if (!isAdminLoggedIn) {
+    router.push("/admin/login")
+  } 
   const handleAddPara = () => {
     const lastPara = para[para.length - 1];
     if (lastPara.title !== '' && lastPara.description !== '') {

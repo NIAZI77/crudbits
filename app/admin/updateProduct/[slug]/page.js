@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { CldUploadWidget } from "next-cloudinary";
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import Cookies from 'js-cookie';
 const UpdateProduct = ({ params }) => {
     const router = useRouter()
     const { slug } = params;
@@ -14,7 +15,10 @@ const UpdateProduct = ({ params }) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [productId, setProductId] = useState('');
-
+    const isAdminLoggedIn = Cookies.get('isAdminLoggedIn');
+    if (!isAdminLoggedIn) {
+      router.push("/admin/login")
+    } 
     useEffect(() => {
         const fetchProduct = async () => {
             setLoading(true);

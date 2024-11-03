@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { CldUploadWidget } from "next-cloudinary";
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import Cookies from 'js-cookie';
 
 const UpdateService = ({ params }) => {
     const router = useRouter()
@@ -15,7 +16,10 @@ const UpdateService = ({ params }) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [serviceId, setServiceId] = useState('');
-
+    const isAdminLoggedIn = Cookies.get('isAdminLoggedIn');
+    if (!isAdminLoggedIn) {
+      router.push("/admin/login")
+    } 
     useEffect(() => {
         const fetchService = async () => {
             setLoading(true);
@@ -138,13 +142,6 @@ const UpdateService = ({ params }) => {
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                     />
-                </div>
-                <div className="flex items-center justify-between">
-                    <label htmlFor="boolean-select" className="inline-flex text-gray-700 text-sm font-bold mb-2">Select a Service</label>
-                    <select id="boolean-select" onChange={handleServiceChange} value={fhir}>
-                        <option value="false">Service</option>
-                        <option value="true">FHIRSuit</option>
-                    </select>
                 </div>
                 {thumbnail && (
                     <div className="mt-4">

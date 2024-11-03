@@ -1,10 +1,17 @@
+"use client";
 import React from "react";
 import Link from 'next/link';
 import { MdHomeRepairService } from "react-icons/md";
 import { FaEnvelope } from "react-icons/fa";
 import { AiOutlineProduct } from "react-icons/ai";
-
+import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
 const Page = () => {
+  const router = useRouter()
+  const isAdminLoggedIn = Cookies.get('isAdminLoggedIn');
+  if (!isAdminLoggedIn) {
+    router.push("/admin/login")
+  } 
   return (
     <>
       <h2 className="my-12 text-3xl tracking-tight font-extrabold text-center text-gray-900">

@@ -1,10 +1,16 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
 const Page = () => {
     const [messages, setMessages] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
+    const router = useRouter()
+    const isAdminLoggedIn = Cookies.get('isAdminLoggedIn');
+    if (!isAdminLoggedIn) {
+      router.push("/admin/login")
+    } 
     useEffect(() => {
         const fetchMessages = async () => {
             setLoading(true);

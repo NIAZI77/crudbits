@@ -3,12 +3,18 @@ import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import { FaEdit, FaPlus } from 'react-icons/fa';
 import { MdDelete } from "react-icons/md";
+import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
 const Page = () => {
+  const router = useRouter()
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
-
+  const isAdminLoggedIn = Cookies.get('isAdminLoggedIn');
+  if (!isAdminLoggedIn) {
+    router.push("/admin/login")
+  } 
   // Fetch products from the API
   useEffect(() => {
     const fetchProducts = async () => {
@@ -109,7 +115,7 @@ const Page = () => {
                 </div>
               ))}
               <div className="flex justify-end sticky bottom-0 right-0 w-full bg-slate-100 p-4">
-                <Link href={`/admin/updateService/${product.slug}`} className="flex items-center justify-center gap-2 bg-slate-500 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded mr-2">
+                <Link href={`/admin/updateProduct/${product.slug}`} className="flex items-center justify-center gap-2 bg-slate-500 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded mr-2">
                   <FaEdit /> Edit
                 </Link>
                 <button className="flex items-center justify-center gap-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={() => handleDelete(product)}>

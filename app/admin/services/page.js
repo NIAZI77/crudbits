@@ -3,12 +3,18 @@ import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import { FaEdit, FaPlus } from 'react-icons/fa';
 import { MdDelete } from "react-icons/md";
+import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
 const Page = () => {
+  const router = useRouter()
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [selectedService, setSelectedService] = useState(null);
-
+  const isAdminLoggedIn = Cookies.get('isAdminLoggedIn');
+  if (!isAdminLoggedIn) {
+    router.push("/admin/login")
+  } 
   // Fetch services from the API
   useEffect(() => {
     const fetchServices = async () => {
