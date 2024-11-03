@@ -6,6 +6,16 @@ export async function DELETE(req) {
     const dbName = 'crudbits';
 
     try {
+        // Check if the request header contains the correct secret key
+        const secretKey = req.headers.get('key');
+        if (secretKey !== process.env.NEXT_PUBLIC_SECRET_KEY) {
+            return new Response(JSON.stringify({ error: 'Unauthorized' }), {
+                status: 401,
+                headers: { 'Content-Type': 'application/json' }
+            });
+        }
+
+        // Connect to the MongoDB client
         await client.connect();
         const data = await req.json();
         const db = client.db(dbName);
@@ -19,8 +29,18 @@ export async function DELETE(req) {
             });
         }
 
-        // Convert _id to ObjectId
-        const objectId = new ObjectId(data._id);
+        // Validate the ObjectId
+        let objectId;
+        try {
+            objectId = new ObjectId(data._id);
+        } catch (error) {
+            return new Response(JSON.stringify({ error: 'Invalid ID format' }), {
+                status: 400,
+                headers: { 'Content-Type': 'application/json' }
+            });
+        }
+
+        // Attempt to delete the document
         const result = await collection.deleteOne({ _id: objectId });
 
         if (result.deletedCount === 0) {

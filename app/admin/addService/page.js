@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import { CldUploadWidget } from "next-cloudinary";
+import Image from 'next/image';
 
 const AddservicePage = () => {
   const [title, setTitle] = useState('');
@@ -40,6 +41,7 @@ const AddservicePage = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'key': process.env.NEXT_PUBLIC_SECRET_KEY
         },
         body: JSON.stringify(newService),
         cache: 'no-store'
@@ -96,7 +98,7 @@ const AddservicePage = () => {
             <p className="font-bold block text-sm text-slate-600">Uploaded Image:</p>
             <div className="flex flex-wrap">
               <div className="w-1/4 p-2">
-                <img
+                <Image height={100} width={100}
                   src={thumbnail}
                   alt="Uploaded service"
                   className="max-w-full h-auto"

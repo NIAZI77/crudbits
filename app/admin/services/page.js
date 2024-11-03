@@ -1,8 +1,8 @@
 "use client";
+import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import { FaEdit, FaPlus } from 'react-icons/fa';
 import { MdDelete } from "react-icons/md";
-
 const Page = () => {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -14,7 +14,7 @@ const Page = () => {
     const fetchServices = async () => {
       setLoading(true);
       try {
-        const response = await fetch('/api/services',{cache: 'no-store'});
+        const response = await fetch('/api/services', { cache: 'no-store' });
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -38,6 +38,7 @@ const Page = () => {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
+          'key': process.env.SECRET_KEY
         },
         body: JSON.stringify({ _id: serviceId }),
         cache: 'no-store'
@@ -88,9 +89,9 @@ const Page = () => {
     <div className="container mx-auto p-4">
       <div className="flex justify-between mb-4">
         <h1 className="text-3xl font-bold">Services</h1>
-        <button className="flex items-center justify-center gap-2 bg-slate-500 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded">
+        <Link title='crudbits' href={"/admin/addService"} className="flex items-center justify-center gap-2 bg-slate-500 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded">
           <FaPlus /> Add Service
-        </button>
+        </Link>
       </div>
       <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
         {services.length === 0 ? (
@@ -108,9 +109,9 @@ const Page = () => {
                 </div>
               ))}
               <div className="flex justify-end sticky bottom-0 right-0 w-full bg-slate-100 p-4">
-                <button className="flex items-center justify-center gap-2 bg-slate-500 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded mr-2">
+                <Link href={`/admin/updateService/${service.slug}`} title="crudbits" className="flex items-center justify-center gap-2 bg-slate-500 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded mr-2">
                   <FaEdit /> Edit
-                </button>
+                </Link>
                 <button className="flex items-center justify-center gap-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={() => handleDelete(service)}>
                   <MdDelete /> Delete
                 </button>

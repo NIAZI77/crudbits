@@ -18,7 +18,6 @@ const Footer = () => {
         setProducts(data);
       } catch (err) {
         console.error('Error fetching products:', err);
-        setError(err.message || 'An unknown error occurred');
       }
     };
     fetchProducts();

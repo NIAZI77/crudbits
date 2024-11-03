@@ -1,6 +1,9 @@
 "use client";
 import React, { useState } from 'react';
 import { CldUploadWidget } from "next-cloudinary";
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+
 
 const AddProductPage = () => {
   const [title, setTitle] = useState('');
@@ -8,7 +11,7 @@ const AddProductPage = () => {
   const [para, setPara] = useState([{ title: '', description: '' }]);
   const [thumbnail, setThumbnail] = useState("");
   const [fhir, setFhir] = useState(false);
-
+  
   const handleAddPara = () => {
     const lastPara = para[para.length - 1];
     if (lastPara.title !== '' && lastPara.description !== '') {
@@ -47,6 +50,7 @@ const AddProductPage = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'key': process.env.NEXT_PUBLIC_SECRET_KEY
         },
         body: JSON.stringify(newProduct),
         cache: 'no-store'
@@ -109,7 +113,7 @@ const AddProductPage = () => {
             <p className="font-bold block text-sm text-slate-600">Uploaded Image:</p>
             <div className="flex flex-wrap">
               <div className="w-1/4 p-2">
-                <img
+                <Image  height={100} width={100} 
                   src={thumbnail}
                   alt="Uploaded Product"
                   className="max-w-full h-auto"

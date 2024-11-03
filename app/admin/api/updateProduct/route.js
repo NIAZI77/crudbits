@@ -1,13 +1,13 @@
 import { MongoClient, ObjectId } from 'mongodb';
 
-export async function DELETE(req) {
+export async function PATCH(req) {
     const uri = process.env.MONGODB_URI;
     const client = new MongoClient(uri);
     const dbName = 'crudbits';
 
     try {
         // Check if the request header contains the correct secret key
-        const secretKey = req.headers.get('key'); 
+        const secretKey = req.headers.get('key');
         if (secretKey !== process.env.NEXT_PUBLIC_SECRET_KEY) {
             return new Response(JSON.stringify({ error: 'Unauthorized' }), {
                 status: 401,
@@ -29,7 +29,7 @@ export async function DELETE(req) {
             });
         }
 
-        // Convert _id to ObjectId
+        // Validate the ObjectId
         let objectId;
         try {
             objectId = new ObjectId(data._id);
@@ -40,16 +40,28 @@ export async function DELETE(req) {
             });
         }
 
-        const result = await collection.deleteOne({ _id: objectId });
+        // Prepare the update operation
+        const { _id, ...updateData } = data; // Destructure to remove _id
 
-        if (result.deletedCount === 0) {
-            return new Response(JSON.stringify({ error: 'No product found with the given ID' }), {
+        // Check if there's any data to update
+        if (Object.keys(updateData).length === 0) {
+            return new Response(JSON.stringify({ error: 'No data to update' }), {
+                status: 400,
+                headers: { 'Content-Type': 'application/json' }
+            });
+        }
+
+        // Attempt to update the document
+        const result = await collection.updateOne({ _id: objectId }, { $set: updateData });
+
+        if (result.modifiedCount === 0) {
+            return new Response(JSON.stringify({ error: 'No product found with the given ID or no changes made' }), {
                 status: 404,
                 headers: { 'Content-Type': 'application/json' }
             });
         }
 
-        return new Response(JSON.stringify({ result: "OK", deletedId: data._id }), {
+        return new Response(JSON.stringify({ result: "OK", updatedId: data._id }), {
             status: 200,
             headers: { 'Content-Type': 'application/json' }
         });

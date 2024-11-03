@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect } from "react";
-
 const Page = () => {
     const [messages, setMessages] = useState([]);
     const [loading, setLoading] = useState(true);

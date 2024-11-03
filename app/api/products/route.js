@@ -12,7 +12,7 @@ export async function GET(req) {
 
         // Fetching all data
         const data = await collection.find({}).toArray();
-        const fdata = data.map((item) => { // Use `data` instead of `response`
+        const fdata = data.map((item) => { 
             return {
                 ...item,
                 slug: item.title.toLowerCase().split(" ").join("-"),
