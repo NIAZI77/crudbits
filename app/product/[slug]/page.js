@@ -110,7 +110,7 @@ const RelatedProducts = ({ products }) => (
             <p className="text-md">{item.description}</p>
             <Link
               title="Explore Product"
-              href={`/service/${item.slug}`}
+              href={`/product/${item.slug}`}
               className="bg-slate-500 px-8 w-fit py-2 text-white font-bold hover:bg-transparent border-2 border-slate-500 hover:text-slate-500 transition-all block my-10"
             >
               Explore

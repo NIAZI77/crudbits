@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { FaStar, FaQuoteLeft } from 'react-icons/fa';
 import ServiceComponent from './components/ServiceComponent';
 import ContactComponent from './components/ContactComponent';
-
+ 
 const Home = () => {
   const testimonials = [
     {
