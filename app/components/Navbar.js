@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 
 const Navbar = () => {
     const pathname = usePathname()
-    const showNavbar = pathname.includes("/admin");  
+    const showNavbar = pathname.includes("/admin");
     const [products, setProducts] = useState([]);
     const [fhirProducts, setFhirProducts] = useState([]);
     const [services, setServices] = useState([]);
