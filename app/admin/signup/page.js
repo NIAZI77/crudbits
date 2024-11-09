@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-
 const Signup = () => {
   const [username, setUsername] = useState(""); // Changed to username
   const [password, setPassword] = useState("");

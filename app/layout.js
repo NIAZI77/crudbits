@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
+import AdminNavbar from "./components/AdminNavBar";
 import Footer from "./components/Footer";
 
 // Initialize the Inter font
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <Navbar />
+        <AdminNavbar />
         <div className="py-16 min-h-screen overflow-x-hidden">
           {children}
         </div>
