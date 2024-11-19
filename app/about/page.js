@@ -13,7 +13,7 @@ const Page = () => {
       title: "Specialization in HL7 FHIR",
       description: "Crudbits stands out as a specialized leader in the healthcare IT landscape, focusing exclusively on the implementation and advancement of HL7 FHIR—the gold standard for exchanging healthcare information. Our unwavering commitment to HL7 FHIR underscores our dedication to fostering interoperability and seamless data exchange within the healthcare industry. By concentrating our expertise on this cutting-edge standard, we empower healthcare organizations to achieve greater connectivity, efficiency, and innovation in their digital ecosystems. At Crudbits, we recognize that the future of healthcare relies on the fluid exchange of information, and our specialization in HL7 FHIR reflects our proactive role in driving this transformative change."
     }, 
-    {
+    { 
       title: "Healthcare Industry Experience",
       description: "At Crudbits, our strength lies in our deep-rooted healthcare industry subject matter expertise. We understand the intricate nuances, unique challenges, and stringent requirements that define the healthcare sector. This specialized knowledge positions us as a trusted partner for healthcare organizations seeking digital transformation. By combining our proficiency in HL7 FHIR standards with a comprehensive understanding of the healthcare landscape, we deliver tailored solutions that address the industry’s specific needs. Crudbits is not just a technology partner; we are a dedicated ally committed to navigating the complexities of the healthcare industry, ensuring that our clients achieve sustainable success in their digital initiatives."
     },
