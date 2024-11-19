@@ -26,7 +26,9 @@ export async function GET(req) {
         console.error('Error connecting to MongoDB:', error);
         return new Response(JSON.stringify({ error: 'Failed to connect to the database' }), {
             status: 500,
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 'Content-Type': 'application/json',
+                      Cache-Control: "no-store"
+                     }
         });
     } finally {
         await client.close();
