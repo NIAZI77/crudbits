@@ -4,7 +4,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 const Page = () => {
-  const data = [
+  const data = [ 
     {
       title: "Helping Your Business Build Success",
       description: "Crudbits is a trailblazing healthcare digital technology transformation company, specializing in key areas of HL7 Fast Healthcare Interoperability Resources (FHIR) standards. Our expertise spans FHIR API development, data integration, and clinical decision support. We are committed to the modernization of healthcare applications, offering services such as legacy system migration, comprehensive interoperability solutions, and seamless alignment with industry standards. Clients can rely on Crudbits for a full spectrum of healthcare-related IT services, backed by our proven track record of successful projects and unwavering commitment to client satisfaction. What sets us apart is our innovative approach, ensuring that we deliver cutting-edge solutions to propel your healthcare technology into the future."
