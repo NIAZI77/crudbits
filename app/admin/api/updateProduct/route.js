@@ -1,5 +1,5 @@
 import { MongoClient, ObjectId } from 'mongodb';
-
+export const revalidate = 60
 export async function PATCH(req) {
     const uri = process.env.MONGODB_URI;
     const client = new MongoClient(uri);
