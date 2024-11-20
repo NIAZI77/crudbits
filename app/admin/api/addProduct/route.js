@@ -1,5 +1,5 @@
 import { MongoClient } from 'mongodb';
-
+export const revalidate = 60
 export async function POST(req) {
     const uri = process.env.MONGODB_URI;
     const client = new MongoClient(uri);
