@@ -1,6 +1,6 @@
 import { MongoClient } from 'mongodb';
 import bcrypt from 'bcrypt';
-
+export const revalidate = 60
 export async function POST(req) {
   const uri = process.env.MONGODB_URI;
   const client = new MongoClient(uri);
