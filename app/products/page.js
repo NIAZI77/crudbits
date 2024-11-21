@@ -43,14 +43,25 @@ const Products = () => {
         <div>
             {error && <div className="error-message">{error}</div>}
             <div>
-                <div className="hero max-h-96 h-screen w-full relative overflow-hidden bg-cover bg-no-repeat bg-center"
-                    style={{ backgroundImage: `url('/Technical-Consulting.jpg')` }}>
-                    <div className='w-full h-full bg-black opacity-50'></div>
-                    <div className="absolute inset-0 mx-auto text-white flex-col space-y-4 w-[80%] h-screen pt-[135px]">
-                        <h1 className="mt-8 mb-4 text-4xl font-extrabold text-center">Products</h1>
-                        <p className="text-md text-center">Pioneering Digital Transformation for Healthcare Excellence</p>
+                <div className="hero max-h-[700px] h-screen w-full relative overflow-hidden">
+                    <div className='w-full h-full bg-black opacity-50 z-10'></div>
+                    <video autoPlay muted loop className="w-screen h-full object-cover absolute top-0 left-0 -z-10">
+                        <source src="products.mp4" type="video/mp4" />
+                        Your browser does not support HTML5 video.
+                    </video>
+                    <div className="absolute inset-0 mx-auto text-white md:w-[60%] w-full max-h-[700px] h-screen">
+                        <div className="flex items-center justify-center flex-col space-y-4 h-full w-full">
+                            <h1 className="font-bold md:text-3xl text-xl text-center pt-52">
+                                Products
+                            </h1>
+                            <p className="text-md text-center">
+                                Pioneering Digital Transformation for Healthcare Excellence
+                            </p>
+                        </div>
                     </div>
                 </div>
+
+
                 <div>
                     <div className='p-2 md:py-16 py-6 md:w-[80%] w-[90%] mx-auto'>
                         <h2 className='h2-style font-semibold text-2xl py-3'>Crudbits</h2>

@@ -45,13 +45,21 @@ const Page = () => {
 
   return (
     <div>
-      <div
-        className="hero max-h-96 h-screen w-full relative overflow-hidden bg-cover bg-no-repeat bg-center"
-        style={{ backgroundImage: `url('/about.png')` }}
-      >
-        <div className='w-full h-full bg-black opacity-50'></div>
-        <div className="absolute inset-0 mx-auto text-white flex flex-col space-y-4 w-[80%] h-screen pt-[135px]">
-          <h1 className="mt-8 mb-4 text-4xl font-extrabold text-center text-white">About Us</h1>
+      <div className="hero max-h-[700px] h-screen w-full relative overflow-hidden">
+        <div className='w-full h-full bg-black opacity-50 z-10'></div>
+        <video autoPlay muted loop className="w-screen h-full object-cover absolute top-0 left-0 -z-10">
+          <source src="about.mp4" type="video/mp4" />
+          Your browser does not support HTML5 video.
+        </video>
+        <div className="absolute inset-0 mx-auto text-white md:w-[60%] w-full max-h-[700px] h-screen">
+          <div className="flex items-center justify-center flex-col space-y-4 h-full w-full">
+            <h1 className="font-bold md:text-3xl text-xl text-center pt-52">
+              About Us
+            </h1>
+            <p className="text-md text-center">
+              FHIRGo is a versatile provider of healthcare interoperability solutions, specializing in the Fast Healthcare Interoperability Resources (FHIR) standard. With extensive experience across various engagement types, including consulting and integration, FHIRGo tailors its services to meet unique client needs across multiple industry domains. The company emphasizes adherence to industry standards, ensuring data accuracy and security.
+            </p>
+          </div>
         </div>
       </div>
 
@@ -61,6 +69,8 @@ const Page = () => {
           Crudbits is a pioneering healthcare digital technology transformation company specializing in HL7 FHIR standards. We offer a wide range of services, including FHIR API development, data integration, and clinical decision support, aimed at modernizing healthcare applications. Our deep industry expertise positions us as a trusted partner for organizations navigating digital transformation. Utilizing a diverse technology stack—Python, Apache Spark, Snowflake, and more—we craft innovative, future-ready solutions that enhance data interoperability and visibility. Our commitment to problem-solving and innovation drives us to integrate emerging technologies, ensuring our clients thrive in the evolving healthcare landscape. Partner with Crudbits for transformative IT services.
         </p>
       </div>
+
+
 
       <div className="grid md:grid-cols-2 grid-cols-1 gap-5 w-[90%] mx-auto pt-10">
         {data.map((item, index) => (
